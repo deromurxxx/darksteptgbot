@@ -1,20 +1,38 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://github.com/user-attachments/assets/0aa67016-6eaf-458a-adb2-6e31a0763ed6" />
-</div>
-
-# Run and deploy your AI Studio app
-
-This contains everything you need to run your app locally.
-
-View your app in AI Studio: https://ai.studio/apps/192e4ebd-b276-4568-b958-44f29fed9af1
-
-## Run Locally
-
-**Prerequisites:**  Node.js
-
-
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+[
+  {
+    "id": "1",
+    "name": "Черная оверсайз футболка",
+    "category": "Футболки",
+    "description": "Классическая черная футболка свободного кроя, 100% хлопок.",
+    "price": "2500 руб",
+    "link": "https://example.com/p1",
+    "addedAt": "2024-05-10T10:00:00Z"
+  },
+  {
+    "id": "2",
+    "name": "Серые джоггеры",
+    "category": "Брюки",
+    "description": "Удобные серые спортивные штаны для повседневной носки.",
+    "price": "4500 руб",
+    "link": "https://example.com/p2",
+    "addedAt": "2024-05-13T12:00:00Z"
+  },
+  {
+    "id": "3",
+    "name": "Белые кеды",
+    "category": "Обувь",
+    "description": "Минималистичные белые кеды из натуральной кожи.",
+    "price": "6000 руб",
+    "link": "https://example.com/p3",
+    "addedAt": "2024-05-01T09:00:00Z"
+  },
+  {
+    "id": "4",
+    "name": "Джинсовая куртка",
+    "category": "Верхняя одежда",
+    "description": "Синяя джинсовая куртка с эффектом потертости.",
+    "price": "7500 руб",
+    "link": "https://example.com/p4",
+    "addedAt": "2024-05-12T15:30:00Z"
+  }
+]
