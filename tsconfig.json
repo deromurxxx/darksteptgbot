@@ -41,11 +41,16 @@ async function startServer() {
     ctx.reply(`👋 Я твой персональный ИИ-стилист DARKSTEP!\n\nНапиши мне, что ты ищешь или какой образ хочешь подобрать. Например:\n— "Подбери мне летний образ с шортами"\n— "Что у вас есть из обуви на весну?"\n— "С чем лучше сочетать черную куртку?"\n\nЯ проанализирую наш ассортимент и дам рекомендации!`);
   });
 
-  bot.on('text', async (ctx) => {
+    bot.on('text', async (ctx) => {
     const userMessage = ctx.message.text;
     try {
       await ctx.sendChatAction('typing');
       
+      const key = (process.env.GEMINI_API_KEY || '').trim();
+      if (!key || key === 'MY_GEMINI_API_KEY') {
+        throw new Error('API key is missing or is a placeholder. Please set GEMINI_API_KEY in the Secrets panel.');
+      }
+
       const sortedProducts = [...products].sort((a, b) => {
         const dateA = new Date(a.addedAt || 0).getTime();
         const dateB = new Date(b.addedAt || 0).getTime();
@@ -72,12 +77,19 @@ async function startServer() {
         Запрос пользователя: "${userMessage}"
       `;
 
+      // Re-initialize model if needed or use high-level instance
       const result = await model.generateContent(prompt);
       const response = await result.response;
       await ctx.reply(response.text());
-    } catch (error) {
+    } catch (error: any) {
       console.error('Gemini Error:', error);
-      await ctx.reply('⚠️ Извини, мой модный процессор перегрелся. Попробуй позже!');
+      let errorMessage = '⚠️ Извини, мой модный процессор перегрелся. Попробуй позже!';
+      
+      if (error.message?.includes('API key not valid') || error.message?.includes('API key is missing')) {
+        errorMessage = '💡 Пожалуйста, настройте GEMINI_API_KEY в меню "Secrets" в AI Studio. Текущий ключ недействителен.';
+      }
+      
+      await ctx.reply(errorMessage);
     }
   });
 
