@@ -1,0 +1,5 @@
+{
+  "name": "DarkStep Telegram Shop",
+  "description": "A standalone Telegram bot for DarkStep shop with AI stylist and admin management.",
+  "requestFramePermissions": []
+}
